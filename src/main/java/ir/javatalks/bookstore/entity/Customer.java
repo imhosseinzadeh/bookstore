@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Customer {
     @Id
-    private long id;
+    private Long id;
 
     @Email
     private String email;
