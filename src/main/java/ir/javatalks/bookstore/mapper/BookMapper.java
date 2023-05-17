@@ -1,4 +1,7 @@
 package ir.javatalks.bookstore.mapper;
 
-public class BookMapper {
+import org.mapstruct.Mapper;
+
+@Mapper
+public interface BookMapper {
 }
