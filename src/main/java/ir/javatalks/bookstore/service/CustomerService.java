@@ -1,7 +1,7 @@
 package ir.javatalks.bookstore.service;
 
 import ir.javatalks.bookstore.entity.Customer;
-import ir.javatalks.bookstore.exception.CustomerNotFoundByIdException;
+import ir.javatalks.bookstore.exception.CustomerNotFoundException;
 import ir.javatalks.bookstore.repository.CustomerRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
@@ -25,11 +25,11 @@ public class CustomerService {
     }
 
     @Transactional(readOnly = true)
-    public Customer logIn(Long customerId) {
-        Optional<Customer> customer = customerRepository.findById(customerId);
+    public Customer logIn(String email, String password) {
+        Optional<Customer> customer = customerRepository.findByEmailAndPassword(email, password);
 
         return customer
-                .orElseThrow(() -> new CustomerNotFoundByIdException(customerId));
+                .orElseThrow(() -> new CustomerNotFoundException(email, password));
     }
 
 }
