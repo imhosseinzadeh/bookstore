@@ -3,7 +3,6 @@ package ir.javatalks.bookstore.service;
 import ir.javatalks.bookstore.entity.Customer;
 import ir.javatalks.bookstore.exception.CustomerNotFoundException;
 import ir.javatalks.bookstore.repository.CustomerRepository;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +19,7 @@ public class CustomerService {
     }
 
     @Transactional
-    public Customer signUp(@Valid Customer customer) {
+    public Customer signUp(Customer customer) {
         return customerRepository.save(customer);
     }
 
