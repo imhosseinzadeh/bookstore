@@ -1,6 +1,7 @@
 package ir.javatalks.bookstore.service;
 
 import ir.javatalks.bookstore.entity.Book;
+import ir.javatalks.bookstore.entity.BookSubject;
 import ir.javatalks.bookstore.repository.BookRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,8 +16,12 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public Page<Book> findAllBookPages(Pageable pageable) {
+    public Page<Book> findAllBooks(Pageable pageable) {
         return bookRepository.findAll(pageable);
+    }
+
+    public Page<Book> findAllBookBySubject(BookSubject subject, Pageable pageable) {
+        return bookRepository.findAllBySubject(subject, pageable);
     }
 
 }
