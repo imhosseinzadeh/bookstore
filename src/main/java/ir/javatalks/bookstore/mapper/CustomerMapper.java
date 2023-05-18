@@ -3,14 +3,11 @@ package ir.javatalks.bookstore.mapper;
 import ir.javatalks.bookstore.dto.CustomerDto;
 import ir.javatalks.bookstore.entity.Customer;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CustomerMapper {
 
-  CustomerMapper MAPPER = Mappers.getMapper(CustomerMapper.class);
+    CustomerDto mapToDto(Customer customer);
 
-  CustomerDto mapToCustomerDto(Customer customer);
-
-  Customer mapToCustomer(CustomerDto customerDto);
+    Customer mapToModel(CustomerDto customerDto);
 }
