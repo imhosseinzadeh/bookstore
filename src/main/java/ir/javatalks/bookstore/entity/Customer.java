@@ -1,5 +1,6 @@
 package ir.javatalks.bookstore.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
@@ -16,6 +17,7 @@ public class Customer {
     private Long id;
 
     @Email
+    @Column(unique = true)
     private String email;
 
     private String password;

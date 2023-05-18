@@ -2,9 +2,9 @@ package ir.javatalks.bookstore.service;
 
 import ir.javatalks.bookstore.entity.Book;
 import ir.javatalks.bookstore.entity.BookSubject;
-import ir.javatalks.bookstore.exception.BookSubjectNotFoundException;
 import ir.javatalks.bookstore.repository.BookRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +17,19 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public Page<Book> findAllBooks(Pageable pageable) {
+    public Book save(Book book) {
+        return bookRepository.save(book);
+    }
+
+    public Page<Book> findAllBooks(Integer pageNo, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
         return bookRepository.findAll(pageable);
     }
 
-    public Page<Book> findAllBookBySubject(String subjectName, Pageable pageable) {
-        try {
-            BookSubject bookSubject = BookSubject.valueOf(subjectName);
-            return bookRepository.findAllBySubject(bookSubject, pageable);
-        } catch (IllegalArgumentException e) {
-            throw new BookSubjectNotFoundException(subjectName);
-        }
+    public Page<Book> findAllBookBySubject(String subjectName, Integer pageNo, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        BookSubject bookSubject = BookSubject.valueOf(subjectName);
+        return bookRepository.findAllBySubject(bookSubject, pageable);
     }
 
 }

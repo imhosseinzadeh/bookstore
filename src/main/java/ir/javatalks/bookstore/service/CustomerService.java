@@ -27,8 +27,10 @@ public class CustomerService {
     public Customer logIn(String email, String password) {
         Optional<Customer> customer = customerRepository.findByEmailAndPassword(email, password);
 
-        return customer
-                .orElseThrow(() -> new CustomerNotFoundException(email, password));
+        return customer.orElseThrow(() -> new CustomerNotFoundException(email, password));
     }
 
+    public Optional<Customer> findByEmail(String email) {
+        return customerRepository.findByEmail(email);
+    }
 }
