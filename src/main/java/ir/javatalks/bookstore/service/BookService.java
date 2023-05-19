@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BookService {
@@ -17,15 +18,18 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
+    @Transactional
     public Book save(Book book) {
         return bookRepository.save(book);
     }
 
+    @Transactional(readOnly = true)
     public Page<Book> findAllBooks(Integer pageNo, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNo, pageSize);
         return bookRepository.findAll(pageable);
     }
 
+    @Transactional(readOnly = true)
     public Page<Book> findAllBookBySubject(String subjectName, Integer pageNo, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNo, pageSize);
         BookSubject bookSubject = BookSubject.valueOf(subjectName);

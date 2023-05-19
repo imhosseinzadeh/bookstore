@@ -30,6 +30,7 @@ public class CustomerService {
         return customer.orElseThrow(() -> new CustomerNotFoundException(email, password));
     }
 
+    @Transactional(readOnly = true)
     public Optional<Customer> findByEmail(String email) {
         return customerRepository.findByEmail(email);
     }
