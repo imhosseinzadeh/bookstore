@@ -18,14 +18,13 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class CustomerServiceTest {
 
-    @Mock
-    CustomerRepository customerRepository;
-
-    @InjectMocks
-    CustomerService customerService;
-
     private static final String email = "sample@gmail.com";
     private static final String password = "sample&Password1234";
+
+    @Mock
+    CustomerRepository customerRepository;
+    @InjectMocks
+    CustomerService customerService;
 
     @Test
     void signUp_returnCustomer_whenEmailAndPasswordValid() {

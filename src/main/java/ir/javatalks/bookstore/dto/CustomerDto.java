@@ -10,6 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerDto {
-  private String email;
-  private String password;
+    private String email;
+    private String password;
 }

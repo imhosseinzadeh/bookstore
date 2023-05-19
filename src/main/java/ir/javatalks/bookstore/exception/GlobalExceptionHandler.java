@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-  @ExceptionHandler(value = { Exception.class })
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  @ResponseBody
-  public ErrorResponseDto handleMyException(Exception ex) {
-    return new ErrorResponseDto("400", ex.getMessage());
-  }
+    @ExceptionHandler(value = {Exception.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ErrorResponseDto handleMyException(Exception ex) {
+        return new ErrorResponseDto("400", ex.getMessage());
+    }
 
 }
