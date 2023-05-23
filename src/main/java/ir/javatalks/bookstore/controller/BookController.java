@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/books")
+
+@RestController
+@RequestMapping("/books")
 @RequiredArgsConstructor
 public class BookController {
 
@@ -21,4 +23,3 @@ public class BookController {
     }
 
 }
-
