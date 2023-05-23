@@ -36,7 +36,7 @@ public class CustomerController {
     }
 
     @PostMapping("/sign-up")
-    public Customer signUp(@Valid CustomerDto customerDto) {
+    public Customer signUp(@RequestBody @Valid CustomerDto customerDto) {
         return customerService.signUp(customerMapper.mapToModel(customerDto));
     }
 
