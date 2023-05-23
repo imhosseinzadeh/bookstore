@@ -9,6 +9,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookRepository extends CrudRepository<Book, Long>, PagingAndSortingRepository<Book, Long> {
+public interface BookRepository extends CrudRepository<Book, String>, PagingAndSortingRepository<Book, String> {
     Page<Book> findAllBySubject(BookSubject subject, Pageable pageable);
 }

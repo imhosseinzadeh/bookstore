@@ -1,9 +1,6 @@
 package ir.javatalks.bookstore.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
@@ -15,7 +12,8 @@ import lombok.*;
 @Builder
 public class Book {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     private String title;
     private String author;
     @Enumerated(EnumType.STRING)

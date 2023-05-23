@@ -1,8 +1,6 @@
 package ir.javatalks.bookstore.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Customer {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Email
     @Column(unique = true)
