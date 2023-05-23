@@ -3,9 +3,11 @@ package ir.javatalks.bookstore.controller;
 import ir.javatalks.bookstore.entity.Book;
 import ir.javatalks.bookstore.mapper.BookMapper;
 import ir.javatalks.bookstore.service.BookService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@RequiredArgsConstructor
 public class BookController {
 
     private final BookService bookService;

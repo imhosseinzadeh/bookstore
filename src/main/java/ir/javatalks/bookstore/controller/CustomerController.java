@@ -6,6 +6,7 @@ import ir.javatalks.bookstore.entity.Customer;
 import ir.javatalks.bookstore.mapper.CustomerMapper;
 import ir.javatalks.bookstore.service.CustomerService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -17,18 +18,12 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/customers")
+@RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
     private final CustomerSignUpValidator customerSignUpValidator;
-
     private final CustomerMapper customerMapper;
-
-    public CustomerController(CustomerService customerService, CustomerSignUpValidator customerSignUpValidator, CustomerMapper customerMapper) {
-        this.customerService = customerService;
-        this.customerSignUpValidator = customerSignUpValidator;
-        this.customerMapper = customerMapper;
-    }
 
     @InitBinder("customerDto")
     private void initBinder(WebDataBinder binder) {
