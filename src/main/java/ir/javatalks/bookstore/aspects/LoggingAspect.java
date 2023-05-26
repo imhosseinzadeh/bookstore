@@ -1,17 +1,15 @@
 package ir.javatalks.bookstore.aspects;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Aspect
 @Component
 public class LoggingAspect {
-
-    private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
     @Pointcut("execution(* ir.javatalks.bookstore.controller.BookController.findAllBooks(..))")
     public void controllerMethods() {
@@ -19,18 +17,18 @@ public class LoggingAspect {
 
     @Before("controllerMethods()")
     public void logBefore(JoinPoint joinPoint) {
-        logger.info("Before executing method: {}", joinPoint.getSignature().getName());
+        log.info("Before executing method: {}", joinPoint.getSignature().getName());
     }
 
     @AfterReturning(pointcut = "controllerMethods()", returning = "result")
     public void logAfter(JoinPoint joinPoint, Object result) {
-        logger.info("After executing method: {}", joinPoint.getSignature().getName());
-        logger.info("Result: {}", result);
+        log.info("After executing method: {}", joinPoint.getSignature().getName());
+        log.info("Result: {}", result);
     }
 
     @AfterThrowing(pointcut = "controllerMethods()", throwing = "exception")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable exception) {
-        logger.error("Exception in method: {}", joinPoint.getSignature().getName(), exception);
+        log.error("Exception in method: {}", joinPoint.getSignature().getName(), exception);
     }
 
     @Around("controllerMethods()")
@@ -38,7 +36,7 @@ public class LoggingAspect {
         long startTime = System.currentTimeMillis();
         Object result = joinPoint.proceed();
         long endTime = System.currentTimeMillis();
-        logger.info("Execution time of {}: {} ms", joinPoint.getSignature().getName(), endTime - startTime);
+        log.info("Execution time of {}: {} ms", joinPoint.getSignature().getName(), endTime - startTime);
         return result;
     }
 }
